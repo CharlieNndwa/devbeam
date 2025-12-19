@@ -384,7 +384,16 @@ body {
   margin-block-end: 20px;
 }
 
+/* Specifically for mobile screens to push content down from the logo */
+@media (max-width: 575px) {
+  .hero {
+    padding-block-start: 180px; /* Increased from 120px to push content down */
+  }
 
+  .hero-content {
+    margin-top: 20px; /* Optional extra gap */
+  }
+}
 
 /*-----------------------------------*\
   #ABOUT
