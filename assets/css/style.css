@@ -2154,3 +2154,187 @@ textarea.input-field {
   font-size: var(--fs-8); /* */
   font-weight: var(--fw-600); /* */
 }
+
+/*-----------------------------------*\
+  #WEB HOSTING SECTION REDESIGN
+\*-----------------------------------*/
+
+.hosting {
+  position: relative;
+  /* The image is now the background of the WHOLE section */
+  background-image: linear-gradient(to bottom, rgba(240, 242, 245, 0.9), rgba(240, 242, 245, 0.9)), 
+                    url('https://static.vecteezy.com/system/resources/thumbnails/006/709/644/small/abstract-modern-tech-of-programming-code-screen-developer-free-photo.jpg');
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed; /* Parallax effect: image stays still while scrolling */
+  padding-block: var(--section-padding);
+}
+
+.hosting-content {
+  text-align: center;
+  margin-block-end: 50px;
+}
+
+.pricing-grid {
+  display: grid;
+  gap: 30px;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  perspective: 1000px; /* Enables 3D space for cards */
+}
+
+/* Individual Pricing Card - Glassmorphism Style */
+.pricing-card {
+  position: relative;
+  background-color: rgba(255, 255, 255, 0.85); /* Semi-transparent white */
+  backdrop-filter: blur(10px); /* Blurs the background image behind the card */
+  padding: 50px 35px;
+  border-radius: var(--radius-12);
+  border: 1px solid rgba(255, 255, 255, 0.5);
+  box-shadow: 0 10px 30px hsla(0, 0%, 0%, 0.1);
+  text-align: center;
+  transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  overflow: hidden;
+  z-index: 1;
+}
+
+/* Magic Animation: Tilt and Lift */
+.pricing-card:hover {
+  transform: translateY(-15px) rotateX(4deg);
+  background-color: rgba(255, 255, 255, 0.95);
+  box-shadow: 0 25px 50px hsla(236, 57%, 28%, 0.2);
+}
+
+/* Floating Animation for the Most Popular Card */
+@keyframes floatMagic {
+  0% { transform: translateY(0); }
+  50% { transform: translateY(-10px); }
+  100% { transform: translateY(0); }
+}
+
+.pricing-card.active {
+  border: 2px solid var(--razzmatazz);
+  animation: floatMagic 4s ease-in-out infinite;
+}
+
+.pricing-card.active:hover {
+  animation-play-state: paused;
+}
+
+/* Text Styling */
+.pricing-card .card-title {
+  color: var(--st-patricks-blue);
+  font-size: 2.4rem;
+  font-weight: var(--fw-700);
+  margin-block-end: 15px;
+}
+
+.pricing-card .price {
+  font-size: 4.5rem;
+  font-weight: var(--fw-700);
+  color: var(--razzmatazz);
+}
+
+.pricing-card .price span {
+  font-size: 1.6rem;
+  color: var(--purple-navy);
+  display: block;
+  font-weight: var(--fw-500);
+}
+
+.pricing-card .card-list {
+  margin-block: 30px;
+  padding-block-start: 20px;
+  border-top: 1px solid rgba(0, 0, 0, 0.05);
+  text-align: left;
+}
+
+.pricing-card .list-item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-block-end: 12px;
+  font-size: 1.5rem;
+  color: var(--space-cadet-1);
+}
+
+.pricing-card .list-item ion-icon {
+  color: var(--razzmatazz);
+  font-size: 2rem;
+}
+
+/* The Magic Glow Overlay (Mouse Follow) */
+.magic-glow {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: radial-gradient(circle at var(--x, 50%) var(--y, 50%), hsla(335, 87%, 51%, 0.15) 0%, transparent 70%);
+  pointer-events: none;
+  z-index: -1;
+  opacity: 0;
+  transition: opacity 0.3s;
+}
+
+.pricing-card:hover .magic-glow { opacity: 1; }
+
+/* Sleek Badge Redesign */
+.badge-container {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 15px;
+}
+
+.badge-sleek {
+  position: relative;
+  background: var(--gradient-2); /* Uses your existing Pink-Orange gradient */
+  color: var(--white);
+  padding: 6px 16px;
+  border-radius: 50px;
+  font-size: 1.2rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  overflow: hidden;
+  box-shadow: 0 4px 15px var(--winter-sky_50);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  animation: badgeFloat 3s ease-in-out infinite;
+}
+
+/* The Animated Shine/Glint Effect */
+.badge-glint {
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 50%;
+  height: 100%;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(255, 255, 255, 0.4),
+    transparent
+  );
+  transform: skewX(-20deg);
+  animation: shine 4s infinite;
+}
+
+/* Subtle Floating Animation */
+@keyframes badgeFloat {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-3px); }
+}
+
+@keyframes shine {
+  0% { left: -100%; }
+  20% { left: 150%; }
+  100% { left: 150%; }
+}
+
+/* Icon tweak */
+.badge-sleek ion-icon {
+  font-size: 1.4rem;
+  --ionicon-stroke-width: 40px;
+}
