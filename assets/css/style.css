@@ -229,6 +229,14 @@ body {
   margin-inline: auto;
 }
 
+.section-titled {
+  color: var(--platinum);
+  font-size: var(--fs-3);
+  margin-block-end: 60px;
+  max-width: max-content;
+  margin-inline: auto;
+}
+
 .underline {
   position: relative;
 }
@@ -861,8 +869,8 @@ body {
 
   .footer-top .container {
     display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 30px 50px;
+    gap: 30px;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
   }
 }
 
@@ -2596,4 +2604,201 @@ textarea.input-field {
 .pricing .container {
   max-width: 1200px;
   margin: 0 auto;
+}
+
+/* --- DRIPPING HERO SECTION --- */
+.portfolio-hero {
+  position: relative;
+  background: var(--st-patricks-blue);
+  padding: 120px 0 80px;
+  overflow: hidden;
+  text-align: center;
+  color: var(--white);
+}
+
+.drip-container {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+}
+
+.drip {
+  position: absolute;
+  top: -100px;
+  width: 40px;
+  height: 40px;
+  background: var(--white);
+  border-radius: 50%;
+  filter: blur(5px);
+  animation: dripDrop 4s infinite ease-in;
+}
+
+.drip:nth-child(2) { left: 30%; animation-delay: 1s; width: 60px; }
+.drip:nth-child(3) { left: 70%; animation-delay: 2.5s; width: 30px; }
+
+@keyframes dripDrop {
+  0% { transform: translateY(0) scale(1); opacity: 0.8; }
+  50% { transform: translateY(300px) scale(1.5, 0.8); opacity: 0.5; }
+  100% { transform: translateY(600px) scale(1); opacity: 0; }
+}
+
+/* --- MODERN PORTFOLIO CARDS --- */
+.project-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: 40px;
+  padding: 50px 0;
+}
+
+.project-card {
+  background: var(--white);
+  border-radius: 24px;
+  overflow: hidden;
+  box-shadow: 0 15px 40px rgba(0,0,0,0.05);
+  transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.project-card:hover {
+  transform: translateY(-15px);
+  box-shadow: 0 30px 60px rgba(0,0,0,0.12);
+}
+
+.card-banner-wrapper {
+  position: relative;
+  height: 250px;
+  overflow: hidden;
+}
+
+.screenshot-overlay {
+  width: 100%;
+  height: 100%;
+  background-size: cover;
+  background-position: top;
+  transition: 5s ease-in-out; /* Smooth scrolling effect on hover */
+}
+
+.project-card:hover .screenshot-overlay {
+  background-position: bottom;
+}
+
+.magic-glint {
+  position: absolute;
+  top: 0;
+  left: -150%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.4), transparent);
+  transform: skewX(-20deg);
+  transition: 0.8s;
+}
+
+.project-card:hover .magic-glint {
+  left: 150%;
+}
+
+.card-content-box {
+  padding: 30px;
+  border-top: 1px solid #f0f0f0;
+}
+
+.card-tag {
+  color: var(--amaranth-purple);
+  font-weight: 700;
+  font-size: 13px;
+  text-transform: uppercase;
+  margin-bottom: 10px;
+}
+
+.content-detail {
+  font-size: 14px;
+  color: var(--purple-navy);
+  line-height: 1.6;
+}
+
+/* Mobile Responsive Adjustments */
+@media (max-width: 768px) {
+  .project-list { grid-template-columns: 1fr; }
+  .portfolio-hero { padding: 80px 20px; }
+}
+
+/* --- VIEW MORE BUTTON & EXIT ICON --- */
+.portfolio-footer {
+  display: flex;
+  justify-content: center;
+  margin-top: 60px;
+}
+
+.btn-view-more {
+  background: var(--st-patricks-blue);
+  color: var(--white);
+  padding: 15px 35px;
+  border-radius: 50px;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  box-shadow: 0 10px 20px rgba(55, 81, 126, 0.2);
+}
+
+.exit-icon {
+  font-size: 1.5rem;
+  transition: transform 0.4s ease;
+}
+
+.btn-view-more:hover {
+  background: var(--amaranth-purple);
+  transform: scale(1.05);
+  color: white !important;
+}
+
+.btn-view-more:hover .exit-icon {
+  transform: translateX(5px) scale(1.2); /* Door pops out on hover */
+}
+
+/* --- THE SCREENSHOT MAGIC --- */
+/* For this to work, save full-page screenshots of the websites.
+   The CSS will scroll through them automatically on hover. */
+.card-banner-wrapper {
+  position: relative;
+  height: 280px; /* Fixed height for consistency */
+  overflow: hidden;
+  border-bottom: 4px solid var(--amaranth-purple);
+}
+
+.screenshot-overlay {
+  width: 100%;
+  height: 800px; /* Taller than the wrapper to allow scrolling */
+  background-size: cover;
+  background-position: top center;
+  transition: transform 6s ease-in-out; /* Slow, professional scroll */
+}
+
+.project-card:hover .screenshot-overlay {
+  transform: translateY(-520px); /* Adjust based on image height */
+}
+
+/* --- DRIPPING HERO REFINED --- */
+.drip-container {
+  position: absolute;
+  top: 0;
+  width: 100%;
+}
+
+.drip {
+  background: rgba(255, 255, 255, 0.2);
+  width: 2px;
+  height: 80px;
+  position: absolute;
+  top: -100px;
+  animation: liquidDrip 3s infinite linear;
+}
+
+@keyframes liquidDrip {
+  0% { transform: translateY(0); opacity: 0; }
+  20% { opacity: 1; }
+  100% { transform: translateY(500px); opacity: 0; }
 }
